@@ -31,7 +31,6 @@ public class jsPropertiesBuilder {
         outputFile = new File(outputDirectory + this.bundleName + this.locale.toString() + ".properties");
         writer = new PrintWriter(outputFile);
         buildProperties();
-        //just adding an extra comment to see how git integration works
     }
 
     /**

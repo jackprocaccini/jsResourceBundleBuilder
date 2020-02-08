@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        //just adding another comment for git testing!
         if(args.length != 5){
             Scanner sc = new Scanner(System.in);
             System.out.print("Enter the path of your JavaScript file: ");
@@ -24,7 +23,5 @@ public class Main {
         } else {
             jsPropertiesBuilder builder = new jsPropertiesBuilder(args[0], args[1], new Locale(args[2], args[3]), args[4]);
         }
-        //lets add one more comment!
-        //add another comment bc I still don't know whats going on
     }
 }
