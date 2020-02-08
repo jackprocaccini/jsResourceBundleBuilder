@@ -1,0 +1,10 @@
+define({
+    /*
+     * Testing comment
+     *
+     */
+
+     'blahblahblahend': 'yes',
+     'app.time.employee.otheremployeescheduledetails.inlineNotificationDescription.genericError': 'Something went wrong. Please try again.'
+     //comment2
+});
