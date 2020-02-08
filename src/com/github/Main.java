@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        //just adding another comment for git testing!
         if(args.length != 5){
             Scanner sc = new Scanner(System.in);
             System.out.print("Enter the path of your JavaScript file: ");
