@@ -77,8 +77,6 @@ public class jsPropertiesBuilder {
         } else {
             value = temp;
         }
-        //This line removes the back slashes from the value
-//        value = value.replaceAll("\\\\", "");
 
         return value;
     }
