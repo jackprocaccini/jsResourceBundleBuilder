@@ -1,4 +1,4 @@
-package com.github.jackprocaccini;
+package com.github.jackprocaccini.js;
 
 import java.io.*;
 import java.util.Properties;
@@ -14,10 +14,14 @@ public class jsPropertiesBuilder {
      * @throws IOException
      */
     public jsPropertiesBuilder(File jsFile) throws IOException {
-        if(!jsFile.getName().endsWith(".js")){
-            throw new IOException("Invalid file type. Must be a .js file");
+        try {
+            this.jsFile = jsFile;
+            if(!this.jsFile.getName().endsWith(".js")){
+                throw new IOException("File must have the .js extention");
+            }
+        } catch(IOException e){
+            e.printStackTrace();
         }
-        this.jsFile = jsFile;
         language = jsFile.getName().substring(jsFile.getName().lastIndexOf("-") + 1, jsFile.getName().lastIndexOf("."));
         props = new Properties();
         buildProperties();
