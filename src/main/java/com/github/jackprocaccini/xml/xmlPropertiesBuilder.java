@@ -21,6 +21,7 @@ public class xmlPropertiesBuilder extends DefaultHandler {
         parser.parse(xmlFile, this);
         dataFound = false;
         valueFound = false;
+        dataCommentFound = false;
     }
 
     @Override
@@ -41,6 +42,8 @@ public class xmlPropertiesBuilder extends DefaultHandler {
             dataFound = true;
         } else if(qName.equals("value")){
             valueFound = true;
+        } else if(qName.equals("comment")){
+            dataCommentFound = true;
         }
     }
 
@@ -58,6 +61,9 @@ public class xmlPropertiesBuilder extends DefaultHandler {
         if(valueFound && dataFound){
             System.out.println("Value: " + new String(ch, start, length));
             valueFound = false;
+        } else if(dataCommentFound){
+            System.out.println("Comment: " + new String(ch, start, length));
+            dataCommentFound = false;
         }
     }
 }
