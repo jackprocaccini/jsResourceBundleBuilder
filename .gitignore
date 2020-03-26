@@ -4,4 +4,5 @@
 /src/test/
 /out/
 /target/
-/src/main/resources/EmployeeHome.resx
+/src/main/resources/
+/target/

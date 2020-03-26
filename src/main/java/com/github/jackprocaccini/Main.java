@@ -7,7 +7,6 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.util.Properties;
 
 public class Main {
 
@@ -19,7 +18,5 @@ public class Main {
 
         jsPropertiesBuilder jsBuilder = new jsPropertiesBuilder(new File("src/main/resources/time-en.js"));
         jsBuilder.getProps().list(System.out);
-
-        System.out.println("----------");
     }
 }
