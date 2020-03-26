@@ -9,20 +9,36 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.IOException;
+import java.util.Properties;
 
 public class xmlPropertiesBuilder extends DefaultHandler {
     private boolean dataFound;
     private boolean valueFound;
     private boolean dataCommentFound;
+    private Properties props;
+    private String key;
 
-    public void readXMLFile(File xmlFile) throws SAXException, IOException, ParserConfigurationException {
+    public xmlPropertiesBuilder(File xmlFile) throws SAXException, IOException, ParserConfigurationException {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser parser = factory.newSAXParser();
         parser.parse(xmlFile, this);
         dataFound = false;
         valueFound = false;
         dataCommentFound = false;
+        props = new Properties();
+        key = "";
     }
+
+//    public void readXMLFile(File xmlFile) throws SAXException, IOException, ParserConfigurationException {
+//        SAXParserFactory factory = SAXParserFactory.newInstance();
+//        SAXParser parser = factory.newSAXParser();
+//        parser.parse(xmlFile, this);
+//        dataFound = false;
+//        valueFound = false;
+//        dataCommentFound = false;
+//        props = new Properties();
+//        key = "";
+//    }
 
     @Override
     public void startDocument() throws SAXException {
@@ -38,6 +54,7 @@ public class xmlPropertiesBuilder extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         if(qName.equals("data")){
             System.out.println("Start Element: " + qName);
+            key = attributes.getValue("name");
             System.out.println("Key: " + attributes.getValue("name"));
             dataFound = true;
         } else if(qName.equals("value")){
@@ -58,12 +75,18 @@ public class xmlPropertiesBuilder extends DefaultHandler {
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
-        if(valueFound && dataFound){
-            System.out.println("Value: " + new String(ch, start, length));
+        String str = new String(ch, start, length);
+        str = str.trim(); //used to make sure empty lines aren't being put into the properties file
+        if(valueFound && dataFound && !str.isEmpty()){
+            System.out.println("Value: " + str);
             valueFound = false;
-        } else if(dataCommentFound){
-            System.out.println("Comment: " + new String(ch, start, length));
+        } else if(dataCommentFound && !str.isEmpty()){
+            System.out.println("Comment: " + str);
             dataCommentFound = false;
         }
+    }
+
+    public String getKey(){
+        return key;
     }
 }
