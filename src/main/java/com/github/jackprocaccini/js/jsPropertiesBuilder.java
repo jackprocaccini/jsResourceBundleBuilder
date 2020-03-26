@@ -62,7 +62,7 @@ public class jsPropertiesBuilder {
     private String buildKey(String str){
         String temp = str.substring(0, str.indexOf(":"));
         temp = temp.trim();
-        String key = temp;
+        String key = temp.substring(1, temp.length()-1);
         return key;
     }
 
@@ -77,9 +77,9 @@ public class jsPropertiesBuilder {
         temp = temp.trim();
         String value;
         if(temp.endsWith(",")){
-            value = temp.substring(0, temp.length() - 1);
+            value = temp.substring(1, temp.length() - 2);
         } else {
-            value = temp;
+            value = temp.substring(1, temp.length()-1);
         }
 
         return value;
